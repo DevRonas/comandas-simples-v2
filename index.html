@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15251f">
+  <title>Comandas Simples</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">PAINEL DO ESTABELECIMENTO</p>
+      <h1>Comandas</h1>
+    </div>
+    <button id="logoutBtn" class="button secondary hidden">Sair</button>
+  </header>
+
+  <main class="container">
+    <section id="setupNotice" class="notice hidden">
+      <h2>Falta configurar o Supabase</h2>
+      <p>Abra <code>app.js</code> e preencha <code>SUPABASE_URL</code> e <code>SUPABASE_ANON_KEY</code> com os dados do seu projeto.</p>
+    </section>
+
+    <section id="authPanel" class="panel narrow">
+      <h2>Entrar</h2>
+      <p class="muted">Entre com o e-mail e a senha cadastrados no Supabase.</p>
+      <form id="loginForm">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="username" required placeholder="voce@exemplo.com">
+        <label for="password">Senha</label>
+        <input id="password" type="password" autocomplete="current-password" required placeholder="Sua senha">
+        <button class="button primary full" type="submit">Entrar</button>
+        <p id="authMessage" class="message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="appPanel" class="hidden">
+      <nav class="tabs" aria-label="Seções">
+        <button class="tab active" data-tab="orders">Pedidos</button>
+        <button class="tab" data-tab="products">Cardápio</button>
+      </nav>
+
+      <section id="ordersTab" class="tabContent">
+        <div class="sectionHeading">
+          <div>
+            <h2>Novo pedido</h2>
+            <p class="muted">Escolha uma mesa ou informe um nome para retirada.</p>
+          </div>
+          <button id="toggleOrderForm" class="button secondary" type="button" aria-expanded="true">Recolher pedido ▲</button>
+        </div>
+        <form id="newOrderForm" class="panel">
+          <div id="tablePickerWrap">
+            <label>Mesas</label>
+            <div id="tablePicker" class="tablePicker" aria-label="Selecionar mesa"></div>
+            <p class="muted">Toque em uma mesa para selecioná-la ou escolha balcão/retirada.</p>
+          </div>
+          <label for="customerLabel">Nome da mesa, cliente ou pedido</label>
+          <input id="customerLabel" maxlength="80" required placeholder="Ex.: Mesa 3, João, retirada da Ana">
+          <label for="orderNotes">Observações gerais (opcional)</label>
+          <textarea id="orderNotes" rows="2" maxlength="500" placeholder="Ex.: cliente vai buscar no balcão"></textarea>
+          <div id="orderProductList" class="productPicker">
+            <p class="muted">Carregando produtos…</p>
+          </div>
+          <div class="totalLine"><span>Total do pedido</span><strong id="newOrderTotal">R$ 0,00</strong></div>
+          <button class="button primary full" type="submit">Salvar pedido</button>
+          <p id="orderMessage" class="message" role="status"></p>
+        </form>
+
+        <div class="sectionHeading">
+          <div>
+            <h2>Pedidos em aberto</h2>
+            <p class="muted">Os pedidos mais recentes aparecem primeiro.</p>
+          </div>
+          <button id="refreshBtn" class="button secondary">Atualizar</button>
+        </div>
+        <div id="openOrders" class="orderList"><p class="muted">Carregando pedidos…</p></div>
+
+        <div class="sectionHeading">
+          <h2>Últimos pedidos fechados</h2>
+        </div>
+        <div id="closedOrders" class="orderList"></div>
+      </section>
+
+      <section id="productsTab" class="tabContent hidden">
+        <h2>Adicionar produto</h2>
+        <form id="productForm" class="panel">
+          <label for="productName">Nome do produto</label>
+          <input id="productName" required maxlength="100" placeholder="Ex.: Refrigerante lata">
+          <div class="twoCols">
+            <div>
+              <label for="productPrice">Preço (R$)</label>
+              <input id="productPrice" type="number" min="0.01" step="0.01" required placeholder="7,50">
+            </div>
+            <div>
+              <label for="productCategory">Categoria</label>
+              <input id="productCategory" maxlength="60" placeholder="Bebidas">
+            </div>
+          </div>
+          <button class="button primary full" type="submit">Cadastrar produto</button>
+          <p id="productMessage" class="message" role="status"></p>
+        </form>
+        <h2>Produtos cadastrados</h2>
+        <div id="manageProducts" class="productAdminList"><p class="muted">Carregando produtos…</p></div>
+      </section>
+    </section>
+  </main>
+
+  <footer><p>Comandas Simples · primeira versão</p></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
