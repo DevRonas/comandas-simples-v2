@@ -54,3 +54,8 @@ Não abra `index.html` diretamente com `file://`; use um servidor local.
 - Seleção por toque de 12 mesas e opção balcão/retirada.
 - Produtos adicionados tocando no cartão, com botões + e − para ajustar quantidades.
 - Formulário de novo pedido pode ser recolhido/expandido.
+
+## Minha primeira contribuição
+
+Esta alteração foi realizada por RONALDELAS-DEVS
+para praticar o processo de Pull Request no GitHub.
